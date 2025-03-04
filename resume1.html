@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Example</title>
+    <title>Side-by-Side Resume Example</title>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
         }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
+        .container {
+            display: flex;
+            justify-content: space-between;
         }
-        th {
-            background-color: #f4f4f4;
+        .left, .right {
+            width: 48%;
+            box-sizing: border-box;
+        }
+        h1, h2 {
+            margin: 0 0 10px;
+        }
+        .section {
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -23,81 +30,40 @@
     <h1>Your Name</h1>
     <p>Email: your.email@example.com | Phone: +91-12345-67890</p>
 
-    <h2>Education</h2>
-    <table>
-        <tr>
-            <th>Institution</th>
-            <th>Degree</th>
-            <th>Year</th>
-        </tr>
-        <tr>
-            <td>ABC University</td>
-            <td>Bachelor of Science in Computer Science</td>
-            <td>2020</td>
-        </tr>
-        <tr>
-            <td>XYZ College</td>
-            <td>Master of Science in Information Technology</td>
-            <td>2022</td>
-        </tr>
-    </table>
-
-    <h2>Work Experience</h2>
-    <table>
-        <tr>
-            <th>Company</th>
-            <th>Position</th>
-            <th>Year</th>
-        </tr>
-        <tr>
-            <td>ABC Corp</td>
-            <td>Software Developer</td>
-            <td>2020-2022</td>
-        </tr>
-        <tr>
-            <td>XYZ Inc</td>
-            <td>Senior Developer</td>
-            <td>2022-Present</td>
-        </tr>
-    </table>
-
-    <h2>Skills</h2>
-    <table>
-        <tr>
-            <th>Skill</th>
-            <th>Proficiency</th>
-        </tr>
-        <tr>
-            <td>HTML</td>
-            <td>Advanced</td>
-        </tr>
-        <tr>
-            <td>CSS</td>
-            <td>Advanced</td>
-        </tr>
-        <tr>
-            <td>JavaScript</td>
-            <td>Intermediate</td>
-        </tr>
-    </table>
-
-    <h2>Projects</h2>
-    <table>
-        <tr>
-            <th>Project Name</th>
-            <th>Description</th>
-            <th>Year</th>
-        </tr>
-        <tr>
-            <td>Project A</td>
-            <td>A web application for managing tasks</td>
-            <td>2021</td>
-        </tr>
-        <tr>
-            <td>Project B</td>
-            <td>A mobile app for tracking fitness activities</td>
-            <td>2022</td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="left">
+            <div class="section">
+                <h2>Education</h2>
+                <ul>
+                    <li>ABC University, Bachelor of Science in Computer Science, 2020</li>
+                    <li>XYZ College, Master of Science in Information Technology, 2022</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML - Advanced</li>
+                    <li>CSS - Advanced</li>
+                    <li>JavaScript - Intermediate</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="section">
+                <h2>Work Experience</h2>
+                <ul>
+                    <li>ABC Corp, Software Developer, 2020-2022</li>
+                    <li>XYZ Inc, Senior Developer, 2022-Present</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Projects</h2>
+                <ul>
+                    <li>Project A: A web application for managing tasks (2021)</li>
+                    <li>Project B: A mobile app for tracking fitness activities (2022)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
