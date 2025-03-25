@@ -14,7 +14,7 @@ function DisplayCartItems() {
     // Ensure 'image' property exists and is not undefined
     const imageUrl = item.image 
       ? `https://mudunuri-lakshmi-harika.github.io/images/items/${item.image}` 
-      : `https://mudunuri-lakshmi-harika.github.io/images/.png`; // Fallback image (your own image)
+      : `https://mudunuri-lakshmi-harika.github.io/images/item-1.png`; // Fallback image (your own image)
 
     const cartItem = document.createElement("div");
     cartItem.className = "cart_item";
