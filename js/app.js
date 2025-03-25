@@ -103,6 +103,6 @@ AddToCart.forEach((button) => {
     const cartItem = { id, title, image, price };
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push(cartItem);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.parse(cart));
   });
 });
