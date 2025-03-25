@@ -8,7 +8,7 @@ function DisplayCartItems(){
     <div class="cart_item">
               <p class="cart_id" >${item.id}</p>
               <p class="cart_title">${item.title}</p>
-              <img src="${item.images[0]}" alt="${item.title}" class="cart_img"/>
+              <img src="${item.images}" alt="${item.title}" class="cart_img"/>
               <p class="cart_price">${item.price}</p>
               <p class="cart_delete">Delete</p>
     `
