@@ -101,7 +101,7 @@ AddToCart.forEach((button) => {
     const price = button.getAttribute("data-price");
 
     const cartItem = { id, title, image, price };
-    const cart = JSON.stringify(localStorage.getItem("cart")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push(cartItem);
     localStorage.setItem("cart", JSON.stringify(cart));
   });
