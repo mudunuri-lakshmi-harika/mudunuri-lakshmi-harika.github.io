@@ -1,6 +1,6 @@
 const CartItems=document.querySelector(".cart-items");
 function DisplayCartItems(){
-  const items=JSON.parse(localStorage.getItem('cart'));
+  const items=JSON.parse(localStorage.getItem("cart"));
   items.forEach(item => {
     const cartItem=document.createElement("div");
     cartItem.className="cart_item";
