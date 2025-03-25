@@ -590,3 +590,24 @@ ul {
 .form_group > span {
   margin-top: 2rem;
 }
+.story_container{
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(35rem,1fr));
+  grid-gap: 5cap;
+  left: auto;
+}
+.story_content_title{
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+.story_content_p{
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+.story_image > img{
+  width:50%;
+  height:100%;
+  object-fit: cover;
+}
