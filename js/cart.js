@@ -12,7 +12,7 @@ function DisplayCartItems() {
     console.log("Item:", item); // Debugging
 
     // Ensure 'image' property exists and is not undefined
-    const imageUrl = item.image ? item.image : "./image/default.png"; // Fallback image
+    const imageUrl = item.image ? item.image : ""; // Fallback image
 
     const cartItem = document.createElement("div");
     cartItem.className = "cart_item";
