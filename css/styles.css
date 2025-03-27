@@ -653,3 +653,14 @@ ul {
   border: 2px solid rgb(178, 176, 176);
   padding: 20px;
 }
+.contact_head{
+  font-size:20px ;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.contact_head img{
+  width: 25px;
+  height: auto;
+}
+.contact_p{
+  font-family: serif;
+}
