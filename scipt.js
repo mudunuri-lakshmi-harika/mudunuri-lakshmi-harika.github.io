@@ -125,16 +125,25 @@ function viewProduct(name, price, image) {
 // ▶️ Play promotional video on page load
 document.addEventListener("DOMContentLoaded", () => {
   const video = document.querySelector(".promo-video");
+
+  // Autoplay attempt
   if (video) {
     const playPromise = video.play();
     if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          console.log("Promo video started playing.");
-        })
-        .catch(error => {
-          console.warn("Autoplay was blocked. User may need to interact with the page.", error);
-        });
+      playPromise.catch(error => {
+        console.warn("Autoplay was blocked. User may need to interact with the page.", error);
+      });
     }
+
+    // Fullscreen toggle on click
+    video.addEventListener("click", () => {
+      if (video.classList.contains("fullscreen-video")) {
+        video.classList.remove("fullscreen-video");
+        document.body.style.overflow = "auto";
+      } else {
+        video.classList.add("fullscreen-video");
+        document.body.style.overflow = "hidden";
+      }
+    });
   }
 });
