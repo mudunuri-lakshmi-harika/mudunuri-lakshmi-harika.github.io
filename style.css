@@ -8,6 +8,7 @@ body {
 
 img {
   border: none !important;
+  cursor:pointer;
 }
 
 /* Navbar */
