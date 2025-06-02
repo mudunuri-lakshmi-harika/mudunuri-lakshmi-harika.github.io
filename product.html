@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <span class="logo">VORTEX</span>
+      <span class="tagline">Fashion Made Fabulous</span>
+      <div class="cart-icon-container" id="cartIcon">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="cart-box" id="cartBox">
+    <div class="cart-header">
+      <h3>Cart</h3>
+      <button id="closeCartBtn" class="close-cart">✕</button>
+    </div>
+    <ul id="cartItems"></ul>
+    <p id="cartTotal">Total: Rs. 0</p>
+  </div>
+
+  <div id="productDetails">
+    <img id="productImage" />
+    <h2 id="productName"></h2>
+    <p id="productPrice"></p>
+    <button id="addToCartBtn">Add to Cart</button>
+    <button id="buyNowBtn">Buy Now</button>
+  </div>
+
+  <h3>Related Items</h3>
+<div class="related-products">
+  <div class="product-card">
+    <img src="images/p3.png" alt="Urban Tee" />
+    <h4>Urban Tee</h4>
+    <p>Rs. 1295</p>
+    <button class="add-related-cart">View Product</button>
+  </div>
+  <div class="product-card">
+    <img src="images/p4.png" alt="City Sweatshirt" />
+    <h4>City Sweatshirt</h4>
+    <p>Rs. 2095</p>
+    <button class="add-related-cart">View Product</button>
+  </div>
+  <div class="product-card">
+    <img src="images/p3.png" alt="Urban Tee" />
+    <h4>Urban Tee</h4>
+    <p>Rs. 1295</p>
+    <button class="add-related-cart">View Product</button>
+  </div>
+  <div class="product-card">
+    <img src="images/p4.png" alt="City Sweatshirt" />
+    <h4>City Sweatshirt</h4>
+    <p>Rs. 2095</p>
+    <button class="add-related-cart">View Product</button>
+  </div>
+</div>
+
+  <script src="product.js" defer></script>
+</body>
+</html>
