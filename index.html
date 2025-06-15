@@ -2,101 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vortex - Debut Collection</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internship Portal</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
-
-
-<div class="cart-box" id="cartBox">
-  <div class="cart-header">
-    <h3>Cart</h3>
-    <button id="closeCartBtn" class="close-cart">✕</button>
-  </div>
-  <ul id="cartItems"></ul>
-  <p id="cartTotal">Total: Rs. 0</p>
-</div>
-
-
-
-
 <body>
-  
 
-    <header class="navbar">
-  <div class="container">
-    <span class="logo">VORTEX</span>
-    <span class="tagline">Fashion Made Fabulous</span>
-
-    <!-- Cart Icon -->
-    <div class="cart-icon-container" id="cartIcon">
-      🛒
-      <span class="cart-count" id="cartCount">0</span>
-    </div>
+  <!-- Sticky Banner -->
+  <div class="sticky-banner">
+    🚀 Apply for Internship
   </div>
-</header>
+
+  <!-- Hamburger Menu -->
+  <button class="hamburger" aria-label="Open menu">☰</button>
 
 
-
-  <section class="collection">
-    <div class="video-section">
-  <video controls autoplay muted loop class="promo-video">
-    <source src="brand.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</div>
-
-    <h2>Debut Collection</h2>
-    <div class="products">
-       <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p1.png')">
-      <img src="p1.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
-
-     <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p3.png')">
-      <img src="p3.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
-
-       <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p4.png')">
-      <img src="p4.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
- <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p1.png')">
-      <img src="p1.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
-
-    <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p1.png')">
-      <img src="p1.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
-
-     <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p3.png')">
-      <img src="p3.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
-
-       <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p4.png')">
-      <img src="p4.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
- <div class="product-card" onclick="viewProduct('Crowned Monarch', 2795, 'p1.png')">
-      <img src="p1.png" alt="Crowned Monarch" />
-      <h3>The Crowned Monarch</h3>
-      <p>Rs. 2,795</p>
-    </div>
-    
-    </div>
+  <!-- Sidebar Navigation -->
+  <nav id="sidebar" class="sidebar">
+    <ul>
+      <li><button class="nav-link" data-target="application">Internship Application</button></li>
+      <li><button class="nav-link" data-target="offer">Offer Letter</button></li>
+      <li><button class="nav-link" data-target="certificate">Certificate Verification</button></li>
+      <li><button class="nav-link" data-target="join">Join Team</button></li>
+      <li><button class="nav-link" data-target="contact">Contact</button></li>
+    </ul>
+  </nav>
+  <main class="main-content">
+  <!-- Home screen with initial message -->
+  <section id="home" class="content-section active">
+    🏠 <h2>Welcome</h2>
+    <p>Click the ☰ menu at the top right to see the internship applications.</p>
   </section>
-  <script src="scipt.js" defer></script>
+
+  <!-- Main Content Sections -->
+  <main class="main-content">
+    <section id="application" class="content-section">📄 <h2>Internship Application</h2><p>Application form details...</p></section>
+    <section id="offer" class="content-section">📄 <h2>Offer Letter</h2><p>Offer letter information...</p></section>
+    <section id="certificate" class="content-section">📄 <h2>Certificate Verification</h2><p>Verify certificates here...</p></section>
+    <section id="join" class="content-section">📄 <h2>Join Team</h2><p>Form to join the team...</p></section>
+    <section id="contact" class="content-section">📄 <h2>Contact</h2><p>Contact us details...</p></section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
