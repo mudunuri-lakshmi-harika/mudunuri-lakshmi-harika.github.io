@@ -289,14 +289,15 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: contain;
+  width: 100dvw; /* dynamic viewport width */
+  height: 100dvh; /* dynamic viewport height */
+  object-fit: cover;
   background-color: rgba(0, 0, 0, 0.95);
   z-index: 9999;
   margin: 0;
   padding: 0;
 }
+
 /* Center the "Related Items" heading */
 h3 {
   text-align: center;
@@ -320,3 +321,4 @@ h3 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   display: block;
 }
+
