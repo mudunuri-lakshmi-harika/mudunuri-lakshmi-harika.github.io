@@ -161,24 +161,53 @@ buyBtn.addEventListener('click', () => {
     const address = prompt("Enter your delivery address (House No, Street Name, Village, Pin Code, District, State):");
     if (!address) return alert("Order cancelled. Address required.");
 
-    const paymentMethod = prompt("Enter payment method (e.g. cash on delivery, card, UPI (PhonePe, GPay)):");
-    if (!paymentMethod) return alert("Order cancelled. Payment required.");
+    // Calculate total amount in paise (smallest currency unit) as Razorpay requires amount in paise
+    const totalAmount = Math.round(cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100);
 
-    // 🔽 Create the order summary
-    let orderSummary = "Order Confirmation Message:\nYour Items:\n";
-    cartItems.forEach(item => {
-        const itemTotal = (item.price * item.quantity).toFixed(2);
-        orderSummary += `${item.title} (${item.size}) x ${item.quantity}: ₹${itemTotal}\n`;
+    var options = {
+        key: "YOUR_RAZORPAY_KEY_ID", // Enter the Key ID generated from the Razorpay Dashboard
+        amount: totalAmount, // amount in paise
+        currency: "INR",
+        name: "Your Store Name",
+        description: "Test Transaction",
+        image: "https://yourstore.com/logo.png", // optional
+        handler: function (response) {
+            // Payment successful
+            // You can verify payment here on backend and then show confirmation
+            
+            let orderSummary = "Order Confirmation Message:\nYour Items:\n";
+            cartItems.forEach(item => {
+                const itemTotal = (item.price * item.quantity).toFixed(2);
+                orderSummary += `${item.title} (${item.size}) x ${item.quantity}: ₹${itemTotal}\n`;
+            });
+            orderSummary += `Total: ₹${(totalAmount/100).toFixed(2)}`;
+
+            alert(`${orderSummary}\nAddress: ${address}\nPayment ID: ${response.razorpay_payment_id}\nThank you for your order!`);
+
+            // Clear cart and close cart modal
+            cartItems = [];
+            renderCart();
+            cart.style.display = 'none';
+
+            window.location.href = "review.html";
+        },
+        prefill: {
+            name: "", // optional: You can add customer's name here
+            email: "", // optional
+            contact: "" // optional
+        },
+        notes: {
+            address: address
+        },
+        theme: {
+            color: "#3399cc"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+
+    rzp1.on('payment.failed', function (response){
+        alert("Payment failed. Reason: " + response.error.description);
     });
-    orderSummary += `Total: ₹${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
-
-    alert(`${orderSummary}\nAddress: ${address}\nPayment: ${paymentMethod}\n**Note: Please send a screenshot of Payment Transactions and order confirmation message to this Number: +91 9764456999`);
-    alert("Thank you for your order!");
-
-    cartItems = [];
-    renderCart();
-    cart.style.display = 'none';
-
-    window.location.href = "review.html";
-});
 });
