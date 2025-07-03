@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const cartIcon = document.getElementById('cart-icon');
     const cart = document.querySelector('.cart');
