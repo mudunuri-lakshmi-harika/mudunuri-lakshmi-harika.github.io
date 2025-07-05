@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="vortax.css" />
+  <style>
+ body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  margin: 0;
+  padding: 0;
+}
+
+.checkout {
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: #111; /* Dark card background */
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+}
+
+.checkout h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.checkout form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.checkout form input,
+.checkout form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #444;
+  background-color: #000; /* Black input fields */
+  color: #fff;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.checkout form small {
+  display: block;
+  color: #aaa;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.checkout form button {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkout form button:hover {
+  background-color: #388e3c;
+}
+
+#order-summary {
+  margin-top: 30px;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+#order-summary h3 {
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+#summary-text {
+  white-space: pre-wrap;
+}
+
+a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #4dabf7;
+}
+
+  </style>
+</head>
+<body>
+  <section class="checkout">
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <label for="house">House No:</label>
+      <input type="text" id="house" required />
+      <small>Enter your house or flat number</small>
+
+      <label for="street">Street Name:</label>
+      <input type="text" id="street" required />
+      <small>Enter your street or lane name</small>
+
+      <label for="village">Village/City:</label>
+      <input type="text" id="village" required />
+      <small>Enter the name of your city, village, or locality</small>
+
+      <label for="district">District:</label>
+      <input type="text" id="district" required />
+      <small>Enter your district</small>
+
+      <label for="state">State:</label>
+      <input type="text" id="state" required />
+      <small>Enter your state</small>
+
+      <label for="pin">Pin Code:</label>
+      <input
+        type="text"
+        id="pin"
+        required
+        pattern="[0-9]{6}"
+        title="Enter a 6-digit PIN code"
+        maxlength="6"
+      />
+      <small>Enter your 6-digit postal PIN code</small>
+
+      <label for="payment">Payment Method:</label>
+      <select id="payment" required>
+        <option value="">--Select Payment Method--</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+        <option value="PhonePe">PhonePe</option>
+        <option value="GPay">GPay</option>
+      </select>
+      <small>Choose your preferred payment method</small>
+
+      <button type="submit">Place Order</button>
+    </form>
+
+    <div id="order-summary" style="display: none">
+      <h3>Order Confirmation</h3>
+      <pre id="summary-text"></pre>
+      <a href="vortex.html">Back to Home</a>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('checkout-form');
+    const summaryText = document.getElementById('summary-text');
+    const orderSummary = document.getElementById('order-summary');
+    const pinInput = document.getElementById('pin');
+    const villageInput = document.getElementById('village');
+    const districtInput = document.getElementById('district');
+    const stateInput = document.getElementById('state');
+
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Function to fetch address info from PIN code API
+    async function fetchAddressByPin(pin) {
+      try {
+        const response = await fetch(
+          `https://api.postalpincode.in/pincode/${pin}`
+        );
+        const data = await response.json();
+
+        if (
+          data[0].Status === 'Success' &&
+          data[0].PostOffice &&
+          data[0].PostOffice.length > 0
+        ) {
+          const postOffice = data[0].PostOffice[0];
+          villageInput.value = postOffice.Block || postOffice.Name || '';
+          districtInput.value = postOffice.District || '';
+          stateInput.value = postOffice.State || '';
+        } else {
+          // Clear fields if PIN not found
+          villageInput.value = '';
+          districtInput.value = '';
+          stateInput.value = '';
+          alert('Invalid PIN code. Please enter a valid 6-digit PIN.');
+        }
+      } catch (error) {
+        console.error('Error fetching PIN code data:', error);
+        alert('Error fetching location data. Please try again later.');
+      }
+    }
+
+    // Listen for when PIN input has 6 digits, then fetch details
+    pinInput.addEventListener('input', () => {
+      const pin = pinInput.value.trim();
+      if (/^\d{6}$/.test(pin)) {
+        fetchAddressByPin(pin);
+      } else {
+        villageInput.value = '';
+        districtInput.value = '';
+        stateInput.value = '';
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const house = document.getElementById('house').value.trim();
+      const street = document.getElementById('street').value.trim();
+      const village = villageInput.value.trim();
+      const district = districtInput.value.trim();
+      const state = stateInput.value.trim();
+      const pin = pinInput.value.trim();
+      const payment = document.getElementById('payment').value;
+
+      if (
+        !house ||
+        !street ||
+        !village ||
+        !district ||
+        !state ||
+        !pin ||
+        !payment
+      ) {
+        alert('Please fill in all the fields.');
+        return;
+      }
+
+      const address = `${house}, ${street}, ${village}, ${pin}, ${district}, ${state}`;
+      let summary = 'Your Items:\n';
+      let total = 0;
+
+      cartItems.forEach((item) => {
+        const itemTotal = (item.price * item.quantity).toFixed(2);
+        total += item.price * item.quantity;
+        summary += `${item.title} (${item.size}) x ${item.quantity}: ₹${itemTotal}\n`;
+      });
+
+      summary += `\nTotal: ₹${total.toFixed(2)}\n\n`;
+      summary += `Address: ${address}\nPayment Method: ${payment}`;
+
+      summaryText.textContent = summary;
+      orderSummary.style.display = 'block';
+      form.style.display = 'none';
+
+      localStorage.removeItem('cartItems');
+    });
+  </script>
+</body>
+</html>
