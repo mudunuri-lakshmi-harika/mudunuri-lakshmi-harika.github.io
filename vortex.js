@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const cartIcon = document.getElementById('cart-icon');
     const cart = document.querySelector('.cart');
@@ -148,6 +149,7 @@ function updateTotal() {
     });
     totalPrice.innerText = `₹${total.toFixed(2)}`; // Add rupee symbol
 }
+
 
 
 buyBtn.addEventListener('click', () => {
