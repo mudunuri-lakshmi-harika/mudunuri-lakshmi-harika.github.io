@@ -150,34 +150,16 @@ function updateTotal() {
 }
 
 
-
 buyBtn.addEventListener('click', () => {
     if (cartItems.length === 0) {
         alert('Your cart is empty!');
         return;
     }
 
-    const address = prompt("Enter your delivery address (House No, Street Name, Village, Pin Code, District, State):");
-    if (!address) return alert("Order cancelled. Address required.");
+    // Save cartItems to localStorage for transfer to checkout page
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-    const paymentMethod = prompt("Enter payment method (e.g. cash on delivery, card, UPI (PhonePe, GPay)):");
-    if (!paymentMethod) return alert("Order cancelled. Payment required.");
-
-    // 🔽 Create the order summary
-    let orderSummary = "Order Confirmation Message:\nYour Items:\n";
-    cartItems.forEach(item => {
-        const itemTotal = (item.price * item.quantity).toFixed(2);
-        orderSummary += `${item.title} (${item.size}) x ${item.quantity}: ₹${itemTotal}\n`;
-    });
-    orderSummary += `Total: ₹${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
-
-    alert(`${orderSummary}\nAddress: ${address}\nPayment: ${paymentMethod}\n**Note: Please send a screenshot of Payment Transactions and order confirmation message to this Number: +91 9764456999`);
-    alert("Thank you for your order!");
-
-    cartItems = [];
-    renderCart();
-    cart.style.display = 'none';
-
-    window.location.href = "review.html";
+    // Navigate to the checkout page
+    window.location.href = 'checkout.html';
 });
 });
