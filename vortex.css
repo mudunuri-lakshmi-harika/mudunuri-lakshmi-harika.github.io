@@ -1,4 +1,3 @@
-
 /* style.css - Black Background Only */
 
 body {
@@ -69,14 +68,13 @@ header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    border-bottom: 1px solid #444;
     padding-bottom: 10px;
 }
 
 .cart-img {
     width: 80px;
     height: 80px;
-    margin-right: 10px;
+    /* Removed border from the image */
 }
 
 .cart-detail {
@@ -135,17 +133,18 @@ header {
 }
 
 .product-box {
-    border: 1px solid #444;
     padding: 10px;
     text-align: center;
     background-color: #000;
     color: #fff;
     border-radius: 4px;
+    /* Removed border from the product box */
 }
 
 .img-box img {
     width: 100%;
     height: auto;
+    /* Removed border from the image */
 }
 
 .price-and-cart {
@@ -212,6 +211,7 @@ header {
     cursor: pointer;
     color: #fff;
 }
+
 .video-overlay {
     position: absolute;
     top: 50%;
@@ -221,6 +221,7 @@ header {
     text-align: center;
     z-index: 1;
 }
+
 /* Ensure body and html take full height */
 html, body {
     margin: 0;
