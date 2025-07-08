@@ -1,3 +1,4 @@
+
 /* style.css - Black Background Only */
 
 body {
@@ -211,9 +212,38 @@ header {
     cursor: pointer;
     color: #fff;
 }
-.video-banner video {
+.video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+/* Ensure body and html take full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Container for the video */
+.video-banner {
+    position: relative;
     width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* Make the video fill the entire screen, stretching both height and width */
+.video-banner video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  /* 100% of the screen width */
+    height: 100%; /* 100% of the screen height */
+    object-fit: cover; /* Ensure it covers the whole area without distortion */
+    z-index: -1; /* Keeps the video behind other content */
 }
