@@ -2,64 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Product Details</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Web - Vortex</title>
+  <link rel="stylesheet" href="vortex.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="container">
-      <span class="logo">VORTEX</span>
-      <span class="tagline">Fashion Made Fabulous</span>
-      <div class="cart-icon-container" id="cartIcon">
-        🛒 <span class="cart-count" id="cartCount">0</span>
-      </div>
+  <header>
+    <a href="#" class="logo">Ecommerce</a>
+    <div id="cart-icon">
+      <i class="ri-shopping-bag-line"></i>
+      <span class="cart-item-count">0</span>
     </div>
   </header>
 
-  <div class="cart-box" id="cartBox">
-    <div class="cart-header">
-      <h3>Cart</h3>
-      <button id="closeCartBtn" class="close-cart">✕</button>
+  <!-- Cart Panel -->
+  <div class="cart">
+    <i class="ri-close-line" id="cart-close"></i>
+    <div class="cart-content"></div>
+    <div class="total">
+      <span>Total:</span>
+      <span class="total-price">₹0.00</span>
     </div>
-    <ul id="cartItems"></ul>
-    <p id="cartTotal">Total: Rs. 0</p>
+    <button class="btn-buy">Buy Now</button>
   </div>
 
-  <div id="productDetails">
-    <img id="productImage" />
-    <h2 id="productName"></h2>
-    <p id="productPrice"></p>
-    <button id="addToCartBtn">Add to Cart</button>
-    <button id="buyNowBtn">Buy Now</button>
-  </div>
-
-  <h3>Related Items</h3>
-<div class="related-products">
-  <div class="product-card">
-    <img src="p3.png" alt="Urban Tee" />
-    <h4>Urban Tee</h4>
-    <p>Rs. 1295</p>
-    <button class="add-related-cart">View Product</button>
-  </div>
-  <div class="product-card">
-    <img src="p4.png" alt="City Sweatshirt" />
-    <h4>City Sweatshirt</h4>
-    <p>Rs. 2095</p>
-    <button class="add-related-cart">View Product</button>
-  </div>
-  <div class="product-card">
-    <img src="/p3.png" alt="Urban Tee" />
-    <h4>Urban Tee</h4>
-    <p>Rs. 1295</p>
-    <button class="add-related-cart">View Product</button>
-  </div>
-  <div class="product-card">
-    <img src="p4.png" alt="City Sweatshirt" />
-    <h4>City Sweatshirt</h4>
-    <p>Rs. 2095</p>
-    <button class="add-related-cart">View Product</button>
-  </div>
-</div>
+  <main>
+    <div class="product-box">
+      <div class="img-box">
+        <img id="product-img" src="" alt="Product Image" />
+      </div>
+      <h2 class="product-title" id="product-title"></h2>
+      <div class="size-select">
+        <label for="size">Size:</label>
+        <select class="size" id="product-size">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
+      <div class="price-and-cart">
+        <span class="price" id="product-price"></span>
+        <i class="ri-shopping-bag-line add-cart bottom-cart-icon"></i>
+      </div>
+    </div>
+    <div class="related-items">
+      <h3>Related Items</h3>
+      <div class="related-list"></div>
+    </div>
+  </main>
 
   <script src="product.js" defer></script>
 </body>
