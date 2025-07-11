@@ -1,167 +1,118 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    const cartIcon = document.getElementById('cart-icon');
-    const cart = document.querySelector('.cart');
-    const closeCart = document.getElementById('cart-close');
-    const cartContent = document.querySelector('.cart-content');
-    const totalPrice = document.querySelector('.total-price');
-    const buyBtn = document.querySelector('.btn-buy');
-    let cartItems = [];
+  const productBoxes = document.querySelectorAll('.product-box');
+  const cartIcon = document.getElementById('cart-icon');
+  const cart = document.querySelector('.cart');
+  const closeCart = document.getElementById('cart-close');
+  const cartContent = document.querySelector('.cart-content');
+  const totalPrice = document.querySelector('.total-price');
+  const buyBtn = document.querySelector('.btn-buy');
 
-    // Function to show the image in full screen
-    function showFullScreenImage(imageSrc) {
-        const modal = document.createElement('div');
-        modal.classList.add('modal');
-        modal.innerHTML = `
-            <div class="modal-content">
-                <img src="${imageSrc}" class="modal-img" />
-                <span class="close-modal">×</span>
-            </div>
-        `;
-        document.body.appendChild(modal);
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-        // Close the modal when clicked
-        modal.querySelector('.close-modal').addEventListener('click', () => {
-            modal.remove();
-        });
+  // Product click → go to product page
+  productBoxes.forEach(box => {
+    box.addEventListener('click', () => {
+      const title = box.getAttribute('data-title');
+      const price = parseFloat(box.getAttribute('data-price'));
+      const imgSrc = box.getAttribute('data-img');
+      const size = 'M';
 
-        // Close the modal when clicking outside the image
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.remove();
-            }
-        });
-    }
-
-    // Add event listener to product images for full-screen functionality
-    document.querySelectorAll('.product-box img').forEach((img) => {
-        img.addEventListener('click', () => {
-            showFullScreenImage(img.src); // Show the clicked image in full-screen
-        });
+      const productData = { title, price, imgSrc, size };
+      localStorage.setItem('selectedProduct', JSON.stringify(productData));
+      window.location.href = 'product.html';
     });
+  });
 
-    function updateCartCount() {
-        const cartCountEl = document.querySelector('.cart-item-count');
-        let totalCount = 0;
-        cartItems.forEach(item => {
-            totalCount += item.quantity;
-        });
-        cartCountEl.textContent = totalCount;
-        cartCountEl.style.display = totalCount > 0 ? 'inline-block' : 'none';
-    }
+  // Cart Logic
+  function updateCartCount() {
+    const cartCountEl = document.querySelector('.cart-item-count');
+    const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    cartCountEl.textContent = totalCount;
+    cartCountEl.style.display = totalCount > 0 ? 'inline-block' : 'none';
+  }
 
-    cartIcon.addEventListener("click", () => {
-        cart.classList.add("active");
-    });
+  function updateTotal() {
+    const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    totalPrice.textContent = `₹${total.toFixed(2)}`;
+  }
 
-    // Close cart
-    closeCart.addEventListener("click", () => {
-        cart.classList.remove("active");
-    });
-
-    cartIcon.addEventListener('click', () => {
-        cart.style.display = 'block';
-    });
-
-    closeCart.addEventListener('click', () => {
-        cart.style.display = 'none';
-    });
-
-    document.querySelectorAll('.add-cart').forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const productBox = btn.closest('.product-box');
-            const title = productBox.querySelector('.product-title').innerText;
-            const price = parseFloat(productBox.querySelector('.price').innerText);
-            const imgSrc = productBox.querySelector('img').src;
-            const size = productBox.querySelector('.size').value;
-
-            const existingItem = cartItems.find(item => item.title === title && item.size === size);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cartItems.push({ title, price, imgSrc, size, quantity: 1 });
-            }
-
-            renderCart();
-        });
-    });
-
-    // Render Cart
-    function renderCart() {
+  function renderCart() {
     cartContent.innerHTML = '';
 
-    cartItems.forEach((item, i) => {
-        const box = document.createElement('div');
-        box.className = 'cart-box';
-        box.innerHTML = `
-            <img src="${item.imgSrc}" class="cart-img">
-            <div class="cart-detail">
-                <h2 class="cart-product-title">${item.title}</h2>
-                <span class="cart-price">₹${item.price}</span> <!-- Add rupee symbol here -->
-                <div class="cart-size">Size: ${item.size}</div>
-                <div class="cart-quantity">
-                    <button class="decrement" data-index="${i}">-</button>
-                    <span class="number">${item.quantity}</span>
-                    <button class="increment" data-index="${i}">+</button>
-                </div>
-            </div>
-            <i class="ri-delete-bin-line cart-remove" data-index="${i}"></i>
-        `;
-        cartContent.appendChild(box);
+    cartItems.forEach((item, index) => {
+      const cartBox = document.createElement('div');
+      cartBox.classList.add('cart-box');
+      cartBox.innerHTML = `
+        <img src="${item.imgSrc}" class="cart-img">
+        <div class="cart-detail">
+          <h2 class="cart-product-title">${item.title}</h2>
+          <span class="cart-price">₹${item.price}</span>
+          <div class="cart-size">Size: ${item.size}</div>
+          <div class="cart-quantity">
+            <button class="decrement" data-index="${index}">-</button>
+            <span class="number">${item.quantity}</span>
+            <button class="increment" data-index="${index}">+</button>
+          </div>
+        </div>
+        <i class="ri-delete-bin-line cart-remove" data-index="${index}"></i>
+      `;
+      cartContent.appendChild(cartBox);
     });
 
     updateTotal();
     updateCartCount();
 
     document.querySelectorAll('.increment').forEach(btn => {
-        btn.addEventListener('click', e => {
-            const index = e.target.dataset.index;
-            cartItems[index].quantity++;
-            renderCart();
-        });
+      btn.addEventListener('click', (e) => {
+        const i = e.target.dataset.index;
+        cartItems[i].quantity++;
+        saveCartAndRender();
+      });
     });
 
     document.querySelectorAll('.decrement').forEach(btn => {
-        btn.addEventListener('click', e => {
-            const index = e.target.dataset.index;
-            if (cartItems[index].quantity > 1) {
-                cartItems[index].quantity--;
-            } else {
-                cartItems.splice(index, 1);
-            }
-            renderCart();
-        });
+      btn.addEventListener('click', (e) => {
+        const i = e.target.dataset.index;
+        if (cartItems[i].quantity > 1) {
+          cartItems[i].quantity--;
+        } else {
+          cartItems.splice(i, 1);
+        }
+        saveCartAndRender();
+      });
     });
 
     document.querySelectorAll('.cart-remove').forEach(btn => {
-        btn.addEventListener('click', e => {
-            const index = e.target.dataset.index;
-            cartItems.splice(index, 1);
-            renderCart();
-        });
+      btn.addEventListener('click', (e) => {
+        const i = e.target.dataset.index;
+        cartItems.splice(i, 1);
+        saveCartAndRender();
+      });
     });
-}
+  }
 
-function updateTotal() {
-    let total = 0;
-    cartItems.forEach(item => {
-        total += item.price * item.quantity;
-    });
-    totalPrice.innerText = `₹${total.toFixed(2)}`; // Add rupee symbol
-}
-
-
-
-buyBtn.addEventListener('click', () => {
-    if (cartItems.length === 0) {
-        alert('Your cart is empty!');
-        return;
-    }
-
-    // Save cartItems to localStorage for transfer to checkout page
+  function saveCartAndRender() {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    renderCart();
+  }
 
-    // Navigate to the checkout page
+  cartIcon.addEventListener('click', () => {
+    cart.classList.add('active');
+    renderCart();
+  });
+
+  closeCart.addEventListener('click', () => {
+    cart.classList.remove('active');
+  });
+
+  buyBtn.addEventListener('click', () => {
+    if (cartItems.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
     window.location.href = 'checkout.html';
-});
+  });
+
+  updateCartCount();
 });
