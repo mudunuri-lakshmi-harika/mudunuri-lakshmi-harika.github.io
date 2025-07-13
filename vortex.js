@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartContent = document.querySelector('.cart-content');
   const totalPrice = document.querySelector('.total-price');
   const buyBtn = document.querySelector('.btn-buy');
+  const vid = document.querySelector('video'); // ✅ Select the video element
+
+  // ✅ Attempt to force autoplay if browser blocks it
+  if (vid && vid.paused) {
+    vid.play().catch(err => {
+      console.log('Autoplay failed:', err);
+    });
+  }
 
   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
@@ -116,3 +124,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateCartCount();
 });
+
