@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     productImg.src = item.imgSrc;
     productImg.alt = item.title;
     productTitle.textContent = item.title;
-    productPrice.textContent = item.price;
+    productPrice.textContent = `₹${item.price}`; 
     productSize.value = item.size || "M";
     localStorage.setItem('selectedProduct', JSON.stringify(item));
   }
