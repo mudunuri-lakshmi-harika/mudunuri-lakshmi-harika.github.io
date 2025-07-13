@@ -39,11 +39,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateProductDetails(productData);
 
-  // Related products data
+  // Related products data (can be homepage data)
   const relatedProducts = [
-    { title: "Casual Black", price: 899, imgSrc: "product5.webp", size: "M" },
-    { title: "Arial Black", price: 999, imgSrc: "product6.webp", size: "M" },
-    { title: "Sporty White", price: 799, imgSrc: "product7.png", size: "L" },
+    {
+      title: "Casual Black",
+      price: 899,
+      imgSrc: "product5.webp",
+      size: "M"
+    },
+    {
+      title: "Arial Black",
+      price: 999,
+      imgSrc: "product6.webp",
+      size: "M"
+    },
+    {
+      title: "Sporty White",
+      price: 799,
+      imgSrc: "product7.png",
+      size: "L"
+    },
+     {
+      title: "Casual Black",
+      price: 899,
+      imgSrc: "product5.webp",
+      size: "M"
+    },
+    {
+      title: "Arial Black",
+      price: 999,
+      imgSrc: "product6.webp",
+      size: "M"
+    },
+    {
+      title: "Sporty White",
+      price: 799,
+      imgSrc: "product7.png",
+      size: "L"
+    }
   ];
 
   // Render related items
@@ -153,10 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
     cart.classList.remove('active');
   });
 
-  // Add to cart button (bottom-right cart icon)
-  document.querySelector('.bottom-cart-icon').addEventListener('click', () => {
+  // Add to cart button
+  document.querySelector('.add-cart').addEventListener('click', () => {
     const title = productTitle.textContent;
-    const price = parseFloat(productPrice.textContent);
+    const price = parseFloat(productPrice.textContent.replace('₹', ''));
     const imgSrc = productImg.src;
     const size = productSize.value;
 
