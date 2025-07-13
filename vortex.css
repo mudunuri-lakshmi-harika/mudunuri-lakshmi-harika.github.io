@@ -54,35 +54,82 @@ header {
   display: none;
 }
 
-/* Video Banner */
+/* Reset default spacing and box model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Make body take full height */
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container for video */
 .video-banner {
   position: relative;
   width: 100%;
-  height: 60vh;
+  height: 100vh;
   overflow: hidden;
 }
 
+/* Video element itself */
 .video-banner video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
+  background: #000;
 }
 
+/* Poster image fallback behavior */
+.video-banner video::poster {
+  object-fit: cover;
+}
+
+/* Optional overlay over the video */
 .video-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3); /* semi-transparent dark overlay */
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none; /* lets user interact with video (if needed) */
 }
 
 .video-overlay h1 {
-  font-size: 3rem;
   color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+
+/* Responsive text size for smaller screens */
+@media (max-width: 768px) {
+  .video-overlay h1 {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+}
+
+/* Hide controls if you enable them later (optional) */
+.video-banner video::-webkit-media-controls {
+  display: none !important;
+}
+
+/* Optional: dark fallback background if video fails */
+@supports not (object-fit: cover) {
+  .video-banner video {
+    background-color: #222;
+  }
 }
 
 /* Shop Section */
