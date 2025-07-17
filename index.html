@@ -3,46 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu Bar</title>
-  <link rel="stylesheet" href="app.css" />
+  <title>Weather Forecast</title>
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-
-  <!-- Sticky Banner -->
-  <div class="sticky-banner">
-    🚀 Apply for Internship
+  <div class="weather-container">
+    <h1>Weather Forecast</h1>
+    <form id="weather-form">
+      <input type="text" id="city-input" placeholder="Enter city name" required />
+      <button type="submit">Get Weather</button>
+    </form>
+    <div id="weather-result" class="weather-result"></div>
   </div>
 
-  <!-- Hamburger Menu -->
-  <button class="hamburger" aria-label="Open menu">☰</button>
-
-
-  <!-- Sidebar Navigation -->
-  <nav id="sidebar" class="sidebar">
-    <ul>
-      <li><button class="nav-link" data-target="application">Internship Application</button></li>
-      <li><button class="nav-link" data-target="offer">Offer Letter</button></li>
-      <li><button class="nav-link" data-target="certificate">Certificate Verification</button></li>
-      <li><button class="nav-link" data-target="join">Join Team</button></li>
-      <li><button class="nav-link" data-target="contact">Contact</button></li>
-    </ul>
-  </nav>
-  <main class="main-content">
-  <!-- Home screen with initial message -->
-  <section id="home" class="content-section active">
-    🏠 <h2>Welcome</h2>
-    <p>Click the ☰ menu at the top right to see the internship applications.</p>
-  </section>
-
-  <!-- Main Content Sections -->
-  <main class="main-content">
-    <section id="application" class="content-section">📄 <h2>Internship Application</h2><p>Application form details...</p></section>
-    <section id="offer" class="content-section">📄 <h2>Offer Letter</h2><p>Offer letter information...</p></section>
-    <section id="certificate" class="content-section">📄 <h2>Certificate Verification</h2><p>Verify certificates here...</p></section>
-    <section id="join" class="content-section">📄 <h2>Join Team</h2><p>Form to join the team...</p></section>
-    <section id="contact" class="content-section">📄 <h2>Contact</h2><p>Contact us details...</p></section>
-  </main>
-
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
