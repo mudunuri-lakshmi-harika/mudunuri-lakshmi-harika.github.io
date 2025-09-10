@@ -5,16 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shopping Web - Vortex</title>
   <link rel="stylesheet" href="vortex.css" />
+  <link rel="stylesheet" href="login.css" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
   <header>
     <a href="#" class="logo">Ecommerce</a>
-    <div id="cart-icon">
-      <i class="ri-shopping-bag-line"></i>
-      <span class="cart-item-count">0</span>
+    <div class="header-right">
+      <div id="auth-section"></div>
+      <div id="cart-icon">
+        <i class="ri-shopping-bag-line"></i>
+        <span class="cart-item-count">0</span>
+      </div>
     </div>
   </header>
+
+ <!-- 🔐 Login Modal -->
+<div id="login-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>Login</h2>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required />
+      </div>
+      <button type="submit">Login</button>
+      <p id="error-msg"></p>
+    </form>
+  </div>
+</div>
+
+<!-- 👤 Profile Popup -->
+<div id="profile-popup" class="profile-popup">
+  <p id="profile-name">👤 Email</p>
+  <p id="profile-cart">🛒 Items in Cart: <span id="profile-cart-count">0</span></p>
+  <button id="profile-buy-btn">Buy Now</button>
+  <button id="profile-logout-btn">Logout</button>
+</div>
+
 
   <div class="video-banner">
    <video autoplay muted loop controls>
@@ -109,5 +142,7 @@
   </section>
 
   <script src="vortex.js" defer></script>
+  <script src="login.js" defer></script>
+
 </body>
 </html>
