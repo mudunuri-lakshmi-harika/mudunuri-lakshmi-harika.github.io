@@ -1,0 +1,149 @@
+/* Header layout */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cart-item-count {
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+
+.profile-popup {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 100px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  width: 200px;
+  text-align: center;
+}
+
+/* 👤 Profile Popup Styling */
+.profile-popup {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 100px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  width: 200px;
+  text-align: center;
+}
+
+#profile-popup p {
+  margin: 0.5rem 0;
+}
+
+#profile-buy-btn,
+#profile-logout-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  margin: 0.4rem 0;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+}
+
+#profile-logout-btn {
+  background-color: #dc3545;
+}
+
+#profile-buy-btn:hover {
+  background-color: #0056b3;
+}
+
+#profile-logout-btn:hover {
+  background-color: #c82333;
+}
+
+#profile-buy-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+/* Auth button styled like a link */
+#auth-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Profile display */
+#profile-info {
+  font-size: 1rem;
+  color: #333;
+}
+
+#logout-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.modal-content button {
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
